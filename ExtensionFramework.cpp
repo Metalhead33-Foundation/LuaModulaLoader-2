@@ -1,9 +1,11 @@
 #include "ExtensionFramework.hpp"
 
-ExtensionFramework::ExtensionFramework(std::string& settable, std::string& setmeta)
+ExtensionFramework::ExtensionFramework(std::string& settable, std::string& setmeta, lua_State *L)
 {
 	tableName = settable;
 	metaTableName = setmeta;
+	getReady();
+	registerFunctions(L);
 }
 void ExtensionFramework::registerFunctions(lua_State *L)
 {

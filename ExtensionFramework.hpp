@@ -15,7 +15,7 @@ private:
 	std::string metaTableName;
 	luaFunctionVector fTable;
 public:
-	ExtensionFramework(std::string& settable, std::string& setmeta);
+	ExtensionFramework(std::string& settable, std::string& setmeta, lua_State *L);
 	void registerFunctions(lua_State *L);
 	const std::string& getTableName() const;
 	const std::string& getMetaTableName() const;
@@ -25,6 +25,8 @@ public:
 	void uploadFunction(luaL_Reg& reg);
 	void uploadFunction(const char* name, lua_CFunction func);
 	void uploadFunction(const std::string& name, lua_CFunction func);
+
+	virtual void getReady() = 0;
 };
 typedef std::shared_ptr<ExtensionFramework> sExtensionFramework;
 
