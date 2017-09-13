@@ -7,6 +7,13 @@ ExtensionFramework::ExtensionFramework(std::string& settable, std::string& setme
 	getReady();
 	registerFunctions(L);
 }
+ExtensionFramework::ExtensionFramework(const char* settable, const char* setmeta, lua_State *L)
+{
+	tableName = settable;
+	metaTableName = setmeta;
+	getReady();
+	registerFunctions(L);
+}
 void ExtensionFramework::registerFunctions(lua_State *L)
 {
 	if(fTable[fTable.size()-1].func && fTable[fTable.size()-1].name)
