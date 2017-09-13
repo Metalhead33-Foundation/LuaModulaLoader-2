@@ -9,7 +9,9 @@ include(qmake_modules/findLuaJIT.pro)
 include(qmake_modules/findLibraryLinker.pro)
 
 SOURCES += main.cpp \
-    ExtensionFramework.cpp
+    ExtensionFramework.cpp \
+    ExtensionFactory.cpp
 
 HEADERS += \
-    ExtensionFramework.hpp
+    ExtensionFramework.hpp \
+    ExtensionFactory.hpp

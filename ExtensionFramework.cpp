@@ -1,8 +1,9 @@
 #include "ExtensionFramework.hpp"
 
-ExtensionFramework::ExtensionFramework()
+ExtensionFramework::ExtensionFramework(std::string& settable, std::string& setmeta)
 {
-
+	tableName = settable;
+	metaTableName = setmeta;
 }
 void ExtensionFramework::registerFunctions(lua_State *L)
 {
@@ -16,11 +17,11 @@ void ExtensionFramework::registerFunctions(lua_State *L)
 	lua_setfield(L, -1, metaTableName.c_str());
 	lua_setglobal(L, tableName.c_str());
 }
-std::string& ExtensionFramework::getTableName()
+const std::string& ExtensionFramework::getTableName() const
 {
 	return tableName;
 }
-std::string& ExtensionFramework::getMetaTableName()
+const std::string& ExtensionFramework::getMetaTableName() const
 {
 	return metaTableName;
 }

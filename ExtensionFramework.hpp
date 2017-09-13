@@ -3,6 +3,7 @@
 #include <lua.hpp>
 #include <string>
 #include <vector>
+#include <memory>
 
 typedef std::vector<luaL_Reg> luaFunctionVector;
 typedef luaFunctionVector::iterator luaFunctionIterator;
@@ -14,10 +15,10 @@ private:
 	std::string metaTableName;
 	luaFunctionVector fTable;
 public:
-	ExtensionFramework();
+	ExtensionFramework(std::string& settable, std::string& setmeta);
 	void registerFunctions(lua_State *L);
-	std::string& getTableName();
-	std::string& getMetaTableName();
+	const std::string& getTableName() const;
+	const std::string& getMetaTableName() const;
 	void setTableName(std::string& setto);
 	void setMetaTableName(std::string& setto);
 
@@ -25,5 +26,6 @@ public:
 	void uploadFunction(const char* name, lua_CFunction func);
 	void uploadFunction(const std::string& name, lua_CFunction func);
 };
+typedef std::shared_ptr<ExtensionFramework> sExtensionFramework;
 
 #endif // EXTENSIONFRAMEWORK_HPP
