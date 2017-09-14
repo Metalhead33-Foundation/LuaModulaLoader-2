@@ -11,17 +11,17 @@ typedef luaFunctionVector::iterator luaFunctionIterator;
 class ExtensionFramework
 {
 private:
-	std::string tableName;
-	std::string metaTableName;
+	const char* tableName;
+	const char* metaTableName;
 	luaFunctionVector fTable;
 public:
 	ExtensionFramework(std::string& settable, std::string& setmeta, lua_State *L);
 	ExtensionFramework(const char* settable, const char* setmeta, lua_State *L);
 	void registerFunctions(lua_State *L);
-	const std::string& getTableName() const;
-	const std::string& getMetaTableName() const;
-	void setTableName(std::string& setto);
-	void setMetaTableName(std::string& setto);
+	const char* getTableName() const;
+	const char* getMetaTableName() const;
+	void setTableName(const char* setto);
+	void setMetaTableName(const char* setto);
 
 	void uploadFunction(luaL_Reg& reg);
 	void uploadFunction(const char* name, lua_CFunction func);
