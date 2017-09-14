@@ -15,8 +15,8 @@ private:
 	const char* metaTableName;
 	luaFunctionVector fTable;
 public:
-	ExtensionFramework(const std::string& settable, const std::string& setmeta, lua_State *L);
-	ExtensionFramework(const char* settable, const char* setmeta, lua_State *L);
+	ExtensionFramework(const std::string& settable, const std::string& setmeta);
+	ExtensionFramework(const char* settable, const char* setmeta);
 	void registerFunctions(lua_State *L);
 	const char* getTableName() const;
 	const char* getMetaTableName() const;
@@ -30,7 +30,6 @@ public:
 	virtual void getReady() = 0;
 };
 typedef std::shared_ptr<ExtensionFramework> sExtensionFramework;
-typedef ExtensionFramework* (__stdcall * createExtensionFrameworkA)(std::string& settable, std::string& setmeta, lua_State *L);
-typedef ExtensionFramework* (__stdcall * createExtensionFrameworkB)(const char* settable, const char* setmeta, lua_State *L);
+typedef ExtensionFramework* (*createExtensionFramework)(void);
 
 #endif // EXTENSIONFRAMEWORK_HPP
