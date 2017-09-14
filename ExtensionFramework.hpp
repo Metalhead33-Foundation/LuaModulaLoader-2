@@ -15,7 +15,7 @@ private:
 	const char* metaTableName;
 	luaFunctionVector fTable;
 public:
-	ExtensionFramework(std::string& settable, std::string& setmeta, lua_State *L);
+	ExtensionFramework(const std::string& settable, const std::string& setmeta, lua_State *L);
 	ExtensionFramework(const char* settable, const char* setmeta, lua_State *L);
 	void registerFunctions(lua_State *L);
 	const char* getTableName() const;
