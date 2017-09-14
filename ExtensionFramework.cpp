@@ -1,9 +1,9 @@
 #include "ExtensionFramework.hpp"
 
-ExtensionFramework::ExtensionFramework(std::string& settable, std::string& setmeta, lua_State *L)
+ExtensionFramework::ExtensionFramework(const std::string& settable, const std::string& setmeta, lua_State *L)
 {
-	tableName = settable;
-	metaTableName = setmeta;
+	tableName = settable.c_str();
+	metaTableName = setmeta.c_str();
 	getReady();
 	registerFunctions(L);
 }
@@ -20,25 +20,25 @@ void ExtensionFramework::registerFunctions(lua_State *L)
 	{
 		fTable.push_back( { NULL, NULL} );
 	}
-	luaL_newmetatable(L, metaTableName.c_str());
+	luaL_newmetatable(L, metaTableName);
 	luaL_register(L, NULL, fTable.data());
 	lua_pushvalue(L, -1);
-	lua_setfield(L, -1, metaTableName.c_str());
-	lua_setglobal(L, tableName.c_str());
+	lua_setfield(L, -1, metaTableName.);
+	lua_setglobal(L, tableName);
 }
-const std::string& ExtensionFramework::getTableName() const
+const char* ExtensionFramework::getTableName() const
 {
 	return tableName;
 }
-const std::string& ExtensionFramework::getMetaTableName() const
+const char* ExtensionFramework::getMetaTableName() const
 {
 	return metaTableName;
 }
-void ExtensionFramework::setTableName(std::string& setto)
+void ExtensionFramework::setTableName(const char* setto)
 {
 	tableName = setto;
 }
-void ExtensionFramework::setMetaTableName(std::string& setto)
+void ExtensionFramework::setMetaTableName(const char* setto)
 {
 	metaTableName = setto;
 }
